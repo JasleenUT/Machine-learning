@@ -71,6 +71,35 @@ X = np.append(arr = np.ones((50,1)).astype(int), values =X, axis = 1)
 X_opt = X[:,[0,1,2,3,4,5]]
 
 # Select a significance level i.e. alpha, I have chosen 0.05
+# Fit the model with all predictors
+regressor_OLS = sm.OLS(endog =  y,exog=X_opt).fit()
+
+# Find the predictor with highest p-value
+regressor_OLS.summary()
+# the lower the p-value, the significant the independent variable is 
+# relation to the dependant variable
+# we will have to remove x2 because p-value is 0.99
+X_opt = X[:,[0,1,3,4,5]]
+regressor_OLS = sm.OLS(endog =  y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+#remove x1
+X_opt = X[:,[0,3,4,5]]
+regressor_OLS = sm.OLS(endog =  y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+#remove x2
+X_opt = X[:,[0,3,5]]
+regressor_OLS = sm.OLS(endog =  y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+#remove x2
+X_opt = X[:,[0,3]]
+regressor_OLS = sm.OLS(endog =  y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+# Thus only R&D spend is the independent variable that has a maximum impact on the dependant variable
+
  
 
 
